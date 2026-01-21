@@ -1,0 +1,894 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+
+  --background-opacity-before-active: 1;
+  --background-opacity-after-active: 0;
+
+  background-color: rgb(245, 245, 247);
+
+  overflow-x: hidden;
+  width: 100vw;
+  position: relative;
+}
+
+.progress-bar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: #c4b595;
+  box-shadow: 0 0 15px rgba(196, 181, 149, 0.5);
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  opacity: var(--background-opacity-before-active);
+  background-image: radial-gradient(rgb(0 0 0 / 4%) 1px, #ffffff1c 1px);
+  background-size: 3px 3px;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  opacity: var(--background-opacity-after-active);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, #0000001c 1px);
+  background-size: 3px 3px;
+  pointer-events: none;
+}
+
+.scene1 {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#projetos {
+  background-color: transparent;
+  /* No more solid dark background */
+
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.horizontal-section {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  background-color: transparent;
+  pointer-events: auto;
+  /* Ensure events can reach this section */
+}
+
+.horizontal-wrapper {
+  display: flex;
+  width: max-content;
+
+}
+
+.panel {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4vw;
+  color: #fff;
+}
+
+.panel1 {
+  width: 100vw;
+  height: 100vh;
+  /* Reverted to 100vh */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4vw;
+  background-color: black;
+  color: #fff;
+}
+
+/* --- Project Opening: Dominix (Reference-based Depth Look) --- */
+.project-panel {
+  position: relative;
+  overflow: hidden;
+  background: #000 !important;
+  perspective: 1500px;
+  /* Stronger perspective for depth */
+}
+
+.project-content {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transform-style: preserve-3d;
+  pointer-events: auto;
+  /* Enable clicks inside */
+}
+
+.project-name {
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-size: 15vw;
+  /* Larger for impact */
+  text-transform: uppercase;
+  color: #c4b595;
+  /* Gold instead of red */
+  letter-spacing: -5px;
+  z-index: 5;
+  pointer-events: none;
+  text-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+  transform: translateZ(50px);
+  /* Removed transition to avoid GSAP conflict */
+}
+
+/* --- Project Details Group (Fix overlap) --- */
+.project-details {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  z-index: 10;
+}
+
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.project-tech-stack span {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c4b595;
+  border: 1px solid rgba(196, 181, 149, 0.4);
+  padding: 6px 16px;
+  border-radius: 50px;
+  background: rgba(196, 181, 149, 0.05);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  backdrop-filter: blur(5px);
+}
+
+/* --- Project Buttons --- */
+.project-links {
+  display: flex;
+  gap: 20px;
+  pointer-events: auto;
+}
+
+.btn {
+  font-family: 'Helvetica', sans-serif;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 12px 30px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  border: 1px solid #c4b595;
+}
+
+.btn-github {
+  background: transparent;
+  color: #c4b595;
+}
+
+.btn-github:hover {
+  background: #c4b595;
+  color: #000;
+}
+
+.btn-visit {
+  background: #c4b595;
+  color: #000;
+}
+
+.btn-visit:hover {
+  background: transparent;
+  color: #c4b595;
+}
+
+/* Gritty scanline removed for a cleaner look matching the photo better */
+.screenshot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Glowing Border Effect for screenshots */
+.screenshot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  background: linear-gradient(45deg, transparent, rgba(196, 181, 149, 0.3), transparent) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.principal_head {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  perspective: 2400px;
+
+  /* 3D Perspective */
+}
+
+.outline-title {
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-size: 11vw;
+  line-height: 0.8;
+  color: rgb(245, 245, 247);
+  text-transform: uppercase;
+  z-index: 4;
+  margin: 0;
+  letter-spacing: normal;
+  position: relative;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+/* Radiant Tech Cluster Styles (Brillante y Diferente) */
+.tech-cluster {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.tech-node {
+  position: absolute;
+  font-size: 3.5rem;
+  transition: transform 0.2s ease-out;
+  /* Smooth JS-driven transform */
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+  animation: neon-pulse 4s infinite ease-in-out;
+  pointer-events: auto;
+}
+
+/* Depth variations via CSS (Static base) */
+[data-depth="1.1"],
+[data-depth="1.2"],
+[data-depth="1.4"] {
+  filter: blur(4px) opacity(0.5);
+  z-index: 1;
+}
+
+[data-depth="1.5"],
+[data-depth="1.8"],
+[data-depth="1.9"] {
+  filter: blur(2px) opacity(0.7);
+  z-index: 2;
+}
+
+[data-depth="2"],
+[data-depth="2.2"],
+[data-depth="2.5"] {
+  filter: blur(0px) opacity(0.9);
+  z-index: 3;
+}
+
+[data-depth="2.6"],
+[data-depth="2.8"],
+[data-depth="3"],
+[data-depth="3.2"],
+[data-depth="3.5"] {
+  filter: blur(0px) opacity(1);
+  z-index: 5;
+  font-size: 4rem;
+}
+
+.tech-node:hover {
+  transform: scale(1.4) rotate(15deg);
+  filter: drop-shadow(0 0 30px var(--glow-color, #fff));
+  z-index: 10;
+}
+
+/* Individual positions for a radiant pattern */
+.node-1 {
+  top: 15%;
+  left: 25%;
+  --glow-color: #e34f26;
+  animation-delay: 0.1s;
+}
+
+.node-2 {
+  top: 10%;
+  right: 25%;
+  --glow-color: #cc6699;
+  animation-delay: 0.5s;
+}
+
+.node-3 {
+  bottom: 15%;
+  left: 30%;
+  --glow-color: #f7df1e;
+  animation-delay: 1s;
+}
+
+.node-4 {
+  bottom: 20%;
+  right: 35%;
+  --glow-color: #61dafb;
+  animation-delay: 1.5s;
+}
+
+.node-5 {
+  top: 45%;
+  left: 10%;
+  --glow-color: #ffffff;
+  animation-delay: 2s;
+}
+
+.node-6 {
+  top: 50%;
+  right: 10%;
+  --glow-color: #777bb4;
+  animation-delay: 2.5s;
+}
+
+.node-7 {
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  --glow-color: #000000;
+  animation-delay: 3s;
+}
+
+.node-15 {
+  top: 5%;
+  left: 35%;
+  --glow-color: #3776ab;
+  animation-delay: 3.5s;
+}
+
+.node-8 {
+  top: 5%;
+  right: 35%;
+  --glow-color: #88ce02;
+  animation-delay: 3.8s;
+}
+
+.node-16 {
+  top: 30%;
+  left: 15%;
+  --glow-color: #ef5b25;
+  animation-delay: 0.3s;
+}
+
+.node-10 {
+  bottom: 30%;
+  right: 15%;
+  --glow-color: #4479a1;
+  animation-delay: 0.8s;
+}
+
+.node-11 {
+  top: 70%;
+  left: 15%;
+  --glow-color: #7952b3;
+  animation-delay: 1.2s;
+}
+
+.node-12 {
+  top: 75%;
+  right: 20%;
+  --glow-color: #f05032;
+  animation-delay: 1.7s;
+}
+
+.node-13 {
+  top: 25%;
+  right: 10%;
+  --glow-color: #f24e1e;
+  animation-delay: 2.2s;
+}
+
+@keyframes neon-pulse {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+    opacity: 0.7;
+  }
+
+  50% {
+    filter: drop-shadow(0 0 25px var(--glow-color, #fff));
+    opacity: 1;
+  }
+}
+
+/* Background Radiant Glow */
+.radiant-glow-bg {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(196, 181, 149, 0.1) 0%, transparent 70%);
+  filter: blur(80px);
+  z-index: 0;
+  animation: glow-breathe 8s infinite alternate;
+}
+
+@keyframes glow-breathe {
+  from {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+
+  to {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+/* Shiny Flare Effect */
+.shiny-flare {
+  position: absolute;
+  width: 200%;
+  height: 100px;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
+  transform: rotate(-45deg);
+  animation: flare-sweep 6s infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes flare-sweep {
+  0% {
+    left: -100%;
+    top: -100%;
+  }
+
+  20%,
+  100% {
+    left: 100%;
+    top: 100%;
+  }
+}
+
+
+
+.tech-stack-row {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  z-index: 3;
+}
+
+.tech-icon-static {
+  font-size: 1.5rem;
+  color: #c4b595;
+  /* Accent color from JS color timeline */
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.tech-icon-static:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .outline-title {
+    font-size: 15vw;
+  }
+
+  .marquee-content i {
+    font-size: 2.5rem;
+  }
+
+  .tech-marquee {
+    opacity: 0.4;
+  }
+
+  .tech-stack-row {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 20px;
+  }
+}
+
+.paper-bg {
+  width: 100%;
+  height: 120vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.part2 {
+  min-height: 100vh !important;
+  height: auto !important;
+
+  width: 100%;
+  /* Add some space at the bottom */
+}
+
+.div1 {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  gap: 200px;
+}
+
+.text-left,
+.text-right {
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-size: 7vw;
+
+  line-height: 0.8;
+  color: #ffffff;
+
+  white-space: nowrap;
+  z-index: 1;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  transform: scale(1.7, 0.8);
+}
+
+.text-right {}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  z-index: 10;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-family: 'Doner', 'Helvetica', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.navbar a:hover {
+  opacity: 1;
+}
+
+.bottom-headline {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-size: 9vw;
+  line-height: 0.8;
+  color: #c4b595;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  z-index: 1;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  transform: scale(1.7, 0.8);
+  /* Removed transform-origin to avoid potential layout shifts during animation if not needed, 
+     but kept if it was part of previous logic. Assuming it is safe to keep. */
+  transform-origin: bottom center;
+}
+
+/* Base Content Layout */
+.content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start;
+  /* Ensure children align to the top */
+  padding: 0 5%;
+  /* Removed top/bottom padding to control spacing via margins */
+  position: relative;
+  z-index: 2;
+  margin-top: 5vh;
+}
+
+.hero-content {
+  margin-bottom: 5rem;
+  /* Space between Headline and Details */
+}
+
+/* Left Column */
+.content_left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Ensure top alignment */
+}
+
+.section-number {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+  display: block;
+  color: #333;
+}
+
+.tagline {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 3.5vw;
+  line-height: 1;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+}
+
+.current-role {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1.1rem;
+  color: #333;
+  margin-top: -1.5rem;
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.role-date {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: normal;
+  margin-top: 0.2rem;
+}
+
+/* Section Title (O QUE EU FAÇO) */
+.section-title {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 2vw;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin-top: 3rem;
+}
+
+.detailed-bio {
+  margin-top: 1rem;
+}
+
+.detailed-bio p {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 1.5rem;
+  max-width: 90%;
+}
+
+/* Right Column */
+.content_right {
+  flex: 1;
+  /* Changed from 1.2 to 1 to match content_left (50% split) */
+  /* Give slightly more space to right content */
+  padding-left: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 0;
+  /* REMOVED padding-top to fix alignment */
+}
+
+/* Specific styling to align right title with left title exactly */
+.text-right-title {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: right;
+  /* User said "nao ta pra direita" (it's not to the right), so I'm aligning it right. */
+  font-size: 3.5vw;
+  /* Ensure it matches */
+  width: 100%;
+  /* Ensure it takes full width to align right */
+}
+
+/* Align the bio text in the right column to the right */
+.text-right-bio {
+  margin-top: 2rem;
+}
+
+.subsection-title {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+  text-align: right;
+  letter-spacing: 1px;
+}
+
+.text-right-bio p {
+  text-align: right;
+  margin-left: auto;
+  /* Push to right if width is limited */
+  margin-right: 0;
+}
+
+.bio {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  font-weight: 400;
+  margin-top: 0;
+  /* Ensure no top margin disrupts alignment */
+}
+
+/* Right Column Content Alignment */
+.content_right .skills-container {
+  justify-content: flex-end;
+  /* Align skills to the right */
+}
+
+.details-content {
+  width: 50%;
+}
+
+/* Specific Layout for Details Section (Bio + Skills side-by-side) */
+.details-content .content_right {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: -6px;
+  /* Visual correction to align text cap-height with title */
+  /* Space between textual bio and skills list */
+}
+
+.details-content .bio {
+  flex: 1;
+  max-width: 100%;
+  /* Ensure text doesn't take all space */
+}
+
+.details-content .skills-container {
+  flex: 1;
+  align-content: flex-start;
+  /* Align content to top */
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skill-item {
+  font-family: 'Helvetica', sans-serif;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.6rem 1.4rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.3s ease;
+  cursor: default;
+  /* Ensure they don't stretch weirdly */
+  height: fit-content;
+}
+
+.skill-item:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+@media (max-width: 1024px) {
+  .details-content .content_right {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .details-content .bio {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .hero-content {
+    margin-bottom: 3rem;
+  }
+
+  .content_right {
+    padding-left: 0;
+    margin-top: 2rem;
+  }
+
+  .tagline {
+    font-size: 3.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .bio {
+    font-size: 1.1rem;
+  }
+}
