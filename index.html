@@ -12,14 +12,27 @@
   <link rel="stylesheet" href="assets/css/fonts.css" />
   <!-- Devicon for tech icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
+  <div id="particles-container"></div>
+  <div class="corner-text bottom-right">© 2026 PORTFÓLIO</div>
 
   <nav class="navbar">
-    <a href="#sobre">sobre mim</a>
-    <a href="#projetos">projetos</a>
-    <a href="#futuro">aonde quero chegar</a>
+    <div class="nav-brand">DESENVOLVEDOR CRIATIVO</div>
+    <div class="nav-links">
+      <a href="#sobre">sobre mim</a>
+      <a href="#projetos">projetos</a>
+      <a href="#futuro">aonde quero chegar</a>
+    </div>
+    <div class="nav-socials">
+      <a href="https://instagram.com/seuuser" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://github.com/seuuser" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/seuuser" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
   </nav>
 
   <h1 class="bottom-headline">THALLYS KAUAN</h1>
@@ -28,8 +41,17 @@
   </div>
   <div id="smooth-wrapper">
     <div id="smooth-content">
+
+
       <section class="scene1">
         <div class="paper-bg">
+          <!-- Floating HUD Elements (Static on page) -->
+          <div class="hud-container">
+            <div class="hud-item tech-tag tag-1">RE-PENSAR</div>
+            <div class="hud-item tech-tag tag-2">CONSTRUIR</div>
+            <div class="hud-item tech-tag tag-3">OTIMIZAR</div>
+            <div class="hud-item coords">X: <span id="coord-x">0.00</span> Y: <span id="coord-y">0.00</span></div>
+          </div>
         </div>
 
         <div class="part2">
@@ -143,26 +165,89 @@
 
       <section class="horizontal-section">
         <div class="horizontal-wrapper">
-          <div class="panel project-panel dominix-panel">
-            <div class="project-content">
-              <h2 class="project-name">Dominix</h2>
-              <div class="project-details">
-                <div class="project-links">
-                  <a href="#" class="btn btn-github">GITHUB</a>
-                  <a href="#" class="btn btn-visit">VISITAR SITE</a>
+          <!-- Projeto 1: Dominix -->
+          <div class="panel project-panel">
+            <div class="project-card">
+              <div class="project-image-side">
+                <img src="assets/img/projects/dominix.png" alt="Dominix Dashboard">
+                <div class="image-overlay"></div>
+              </div>
+              <div class="project-info-side">
+                <div class="project-header">
+                  <span class="project-category">SaaS / Dashboard</span>
+                  <h2 class="project-title">Dominix</h2>
                 </div>
-                <div class="project-tech-stack">
-                  <span>HTML5</span>
+                <p class="project-description">
+                  Uma plataforma de análise de dados em tempo real com interface futurista e focada em UX de alta performance.
+                </p>
+                <div class="project-tags">
+                  <span>React</span>
                   <span>GSAP</span>
-                  <span>CSS3</span>
-                  <span>JAVASCRIPT</span>
+                  <span>Next.js</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn primary">VISITAR SITE</a>
+                  <a href="#" class="project-btn secondary"><i class="fa-brands fa-github"></i></a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="panel">Slide 2</div>
-          <div class="panel">Slide 3</div>
-          <div class="panel">Slide 4</div>
+
+          <!-- Projeto 2: Ethereal -->
+          <div class="panel project-panel">
+            <div class="project-card">
+              <div class="project-image-side">
+                <img src="assets/img/projects/ethereal.png" alt="Ethereal Fashion">
+                <div class="image-overlay"></div>
+              </div>
+              <div class="project-info-side">
+                <div class="project-header">
+                  <span class="project-category">E-commerce / Luxo</span>
+                  <h2 class="project-title">Ethereal</h2>
+                </div>
+                <p class="project-description">
+                  Landing page minimalista para uma marca de moda high-end, focada em elegância e tipografia refinada.
+                </p>
+                <div class="project-tags">
+                  <span>Three.js</span>
+                  <span>SCSS</span>
+                  <span>GSAP</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn primary">VISITAR SITE</a>
+                  <a href="#" class="project-btn secondary"><i class="fa-brands fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projeto 3: Vortex -->
+          <div class="panel project-panel">
+            <div class="project-card">
+              <div class="project-image-side">
+                <img src="assets/img/projects/vortex.png" alt="Vortex Crypto">
+                <div class="image-overlay"></div>
+              </div>
+              <div class="project-info-side">
+                <div class="project-header">
+                  <span class="project-category">Crypto / Fintech</span>
+                  <h2 class="project-title">Vortex</h2>
+                </div>
+                <p class="project-description">
+                  Interface de trading de criptomoedas com estética cyberpunk e visualização de dados complexa.
+                </p>
+                <div class="project-tags">
+                  <span>Web3</span>
+                  <span>React</span>
+                  <span>Three.js</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn primary">VISITAR SITE</a>
+                  <a href="#" class="project-btn secondary"><i class="fa-brands fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -178,6 +263,7 @@
 
   <!-- JS principal -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/hero-animation.js"></script>
 </body>
 
 </html>

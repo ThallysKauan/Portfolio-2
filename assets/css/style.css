@@ -4,6 +4,30 @@
   box-sizing: border-box;
 }
 
+/* Custom Scrollbar - Slim & Elegant */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4b595;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3947a;
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c4b595 rgba(0, 0, 0, 0.05);
+}
+
 body {
 
   --background-opacity-before-active: 1;
@@ -40,7 +64,8 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 9999;
+  z-index: -2;
+  /* Colocado atrás dos cristais */
   opacity: var(--background-opacity-before-active);
   background-image: radial-gradient(rgb(0 0 0 / 4%) 1px, #ffffff1c 1px);
   background-size: 3px 3px;
@@ -51,7 +76,8 @@ body::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 9999;
+  z-index: -2;
+  /* Colocado atrás dos cristais */
   opacity: var(--background-opacity-after-active);
   background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, #0000001c 1px);
   background-size: 3px 3px;
@@ -122,116 +148,161 @@ body::after {
 }
 
 /* --- Project Opening: Dominix (Reference-based Depth Look) --- */
+/* --- Project Opening Refactored: Split-Layout Card --- */
 .project-panel {
   position: relative;
   overflow: hidden;
   background: #000 !important;
-  perspective: 1500px;
-  /* Stronger perspective for depth */
-}
-
-.project-content {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
-  transform-style: preserve-3d;
-  pointer-events: auto;
-  /* Enable clicks inside */
 }
 
-.project-name {
-  font-family: 'Impact', 'Arial Black', sans-serif;
-  font-size: 15vw;
-  /* Larger for impact */
-  text-transform: uppercase;
-  color: #c4b595;
-  /* Gold instead of red */
-  letter-spacing: -5px;
-  z-index: 5;
-  pointer-events: none;
-  text-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
-  transform: translateZ(50px);
-  /* Removed transition to avoid GSAP conflict */
+.project-card {
+  width: 90vw;
+  max-width: 1200px;
+  height: 70vh;
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(196, 181, 149, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
 }
 
-/* --- Project Details Group (Fix overlap) --- */
-.project-details {
+.project-image-side {
+  flex: 1.2;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+
+.project-image-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-card:hover .project-image-side img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
   position: absolute;
-  top: 65%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 800px;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.project-info-side {
+  flex: 0.8;
+  padding: 4rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  z-index: 10;
-}
-
-.project-tech-stack {
-  display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
 }
 
-.project-tech-stack span {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
+.project-category {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 0.7rem;
   color: #c4b595;
-  border: 1px solid rgba(196, 181, 149, 0.4);
-  padding: 6px 16px;
-  border-radius: 50px;
-  background: rgba(196, 181, 149, 0.05);
-  letter-spacing: 1px;
   text-transform: uppercase;
-  backdrop-filter: blur(5px);
+  letter-spacing: 4px;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
-/* --- Project Buttons --- */
-.project-links {
+.project-title {
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-size: 5rem;
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: -2px;
+}
+
+.project-description {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.project-tags {
   display: flex;
-  gap: 20px;
-  pointer-events: auto;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.btn {
+.project-tags span {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(196, 181, 149, 0.3);
+  padding-bottom: 2px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.project-btn {
   font-family: 'Helvetica', sans-serif;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 800;
-  padding: 12px 30px;
-  border-radius: 4px;
-  text-transform: uppercase;
   letter-spacing: 2px;
+  text-transform: uppercase;
   transition: all 0.3s ease;
-  border: 1px solid #c4b595;
 }
 
-.btn-github {
-  background: transparent;
-  color: #c4b595;
-}
-
-.btn-github:hover {
+.project-btn.primary {
+  padding: 1rem 2.5rem;
   background: #c4b595;
   color: #000;
+  border-radius: 4px;
 }
 
-.btn-visit {
-  background: #c4b595;
-  color: #000;
+.project-btn.primary:hover {
+  background: #fff;
+  transform: translateY(-2px);
 }
 
-.btn-visit:hover {
-  background: transparent;
+.project-btn.secondary {
+  font-size: 1.2rem;
   color: #c4b595;
+  display: flex;
+  align-items: center;
+}
+
+.project-btn.secondary:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .project-card {
+    flex-direction: column;
+    height: auto;
+    width: 85vw;
+  }
+  .project-image-side {
+    height: 40vh;
+  }
+  .project-info-side {
+    padding: 2.5rem;
+  }
+  .project-title {
+    font-size: 3rem;
+  }
 }
 
 /* Gritty scanline removed for a cleaner look matching the photo better */
@@ -553,11 +624,81 @@ body::after {
   }
 }
 
-.paper-bg {
+
+
+#particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 120vh;
-  position: relative;
-  overflow: hidden;
+  height: 100vh;
+  z-index: -1;
+  /* Movido para trás de tudo */
+  pointer-events: none;
+}
+
+.corner-text {
+  position: fixed;
+  z-index: 1001;
+  /* Acima de quase tudo */
+  mix-blend-mode: difference;
+  color: white;
+  /* Branco + difference = contraste automático */
+  font-family: 'Doner', 'Helvetica', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  pointer-events: none;
+}
+
+
+.bottom-right {
+  bottom: 2rem;
+  right: 3rem;
+}
+
+/* Floating HUD Styling - Static on page */
+.hud-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120vh; /* Mesma altura do paper-bg */
+  pointer-events: none;
+  z-index: 2000;
+}
+
+.hud-item {
+  position: absolute;
+  color: #000; /* Cor preta conforme pedido */
+  font-family: 'Helvetica', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  opacity: 0.6; /* Sutil mas visível */
+}
+
+.tech-tag {
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Borda preta sutil */
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+/* Espalhados ao redor do centro */
+.tag-1 { top: 40%; left: 20%; }
+.tag-2 { top: 35%; right: 20%; }
+.tag-3 { top: 55%; left: 25%; }
+
+/* Coordenadas centralizadas embaixo da esfera */
+.coords { 
+  top: 62%; /* Pouco abaixo do centro onde está a esfera */
+  left: 50%; 
+  transform: translateX(-50%);
+  font-family: monospace; 
+  font-size: 0.75rem;
+  color: #000;
 }
 
 .part2 {
@@ -601,21 +742,63 @@ body::after {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 2rem;
+  padding: 2.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* 3 Colunas: Esquerda, Centro, Direita */
+  align-items: center;
+  z-index: 1000;
+  mix-blend-mode: difference;
+}
+
+.nav-brand {
+  color: white;
+  font-family: 'Doner', 'Helvetica', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.nav-links {
   display: flex;
+  gap: 2.5rem;
   justify-content: center;
-  gap: 2rem;
-  z-index: 10;
+}
+
+.nav-socials {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-end; /* Ícones na extrema direita */
+  align-items: center;
+}
+
+.nav-socials a {
+  font-size: 1.4rem; /* Aumentado para mais destaque */
+  opacity: 1; /* Opacidade total para não parecer "apagado" */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-socials a:hover {
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 .navbar a {
   text-decoration: none;
-  color: #333;
+  color: white;
+  /* Cor base branca para o modo difference inverter */
   font-family: 'Doner', 'Helvetica', sans-serif;
-  font-weight: bold;
+  font-weight: 500;
+  /* Reduzido de bold para 500 para ficar mais leve */
   text-transform: uppercase;
-  font-size: 0.9rem;
-  opacity: 0.7;
+  font-size: 0.85rem;
+  /* Levemente menor */
+  letter-spacing: 1px;
+  /* Mais espaçamento para elegância */
+  opacity: 0.8;
   transition: opacity 0.3s;
 }
 
@@ -728,7 +911,7 @@ body::after {
 
 .detailed-bio p {
   font-family: 'Helvetica', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   color: #555;
   margin-bottom: 1.5rem;
@@ -891,4 +1074,47 @@ body::after {
   .bio {
     font-size: 1.1rem;
   }
+}
+
+.paper-bg {
+  width: 100%;
+  padding: 100px 50px 100px 50px;
+  height: 120vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.headline_text {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 50vh;
+
+}
+
+.headline_text .port,
+.headline_text .folio {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 16rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-align: right;
+  line-height: 1;
+  -webkit-text-stroke: 1.5px #c4b595;
+  mix-blend-mode: difference;
+  letter-spacing: -20.5px;
+}
+
+.port {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.folio {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

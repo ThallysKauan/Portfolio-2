@@ -37,18 +37,7 @@ gsap.to("body", {
     '--background-opacity-after-active': 1,
 });
 
-gsap.to(".navbar a", {
-    scrollTrigger: {
-        trigger: ".paper-bg",
-        endTrigger: ".paper-bg",
-        start: "bottom bottom-=60",
-        end: "bottom-=500 top",
-        scrub: 1,
-        markers: false,
-    },
-
-    color: "white",
-});
+// Removido o controle manual de cor da navbar (CSS mix-blend-mode assume o controle)
 
 gsap.to(".div1", {
     duration: 0.6,
@@ -226,20 +215,7 @@ if (projectsSection) {
 //     }
 // );
 
-gsap.fromTo('.navbar a',
-    { color: "white" },
-    {
-        scrollTrigger: {
-            trigger: "#projetos",
-            start: "bottom center",
-            end: "bottom top",
-            scrub: 1,
-            markers: false,
-        },
-        color: "#1a1a1a",
-        immediateRender: false
-    }
-);
+// Removida transição de volta para o escuro
 
 // --- CAMERA CRASH ZOOM EFFECT ---
 const title = document.querySelector(".outline-title");
@@ -283,10 +259,6 @@ crashTL
         scale: 2,
         opacity: 0,
         ease: "power1.in"
-    }, 0)
-    .to('.navbar a', {
-        color: "#333",
-        ease: "none"
     }, 0);
 
 
@@ -299,9 +271,9 @@ const horizontalTL = gsap.timeline({
     scrollTrigger: {
         trigger: ".horizontal-section",
         start: "top top",
-        end: () => "+=" + (window.innerWidth * 3), // Full duration for all phases
+        end: () => "+=" + (document.querySelector(".horizontal-wrapper").scrollWidth),
         pin: true,
-        scrub: 1, // Tighter scrub for better control
+        scrub: 1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         pinSpacing: true,
@@ -309,34 +281,24 @@ const horizontalTL = gsap.timeline({
     }
 });
 
-// PHASE 1: FULL INTRO (Title & Depth & Buttons)
-// Ensure they show up immediately but animate to final position
-horizontalTL.fromTo(".project-name",
-    { scale: 0.5, z: -500, opacity: 0 },
-    { scale: 1, z: 50, opacity: 1, duration: 1, ease: "power2.out" },
-    0);
-
-horizontalTL.fromTo(".project-details",
-    { y: 50, opacity: 0 },
-    { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
-    0.3);
-
-// Stagger individual children for a more dynamic feel
-horizontalTL.fromTo(".project-details > *",
-    { y: 20, opacity: 0 },
-    { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" },
-    0.5);
-
-// PHASE 2: HOLD / INTERACT (A moment where nothing moves sideways)
-// We add an empty space in the timeline to let the user "see" the finished result
-horizontalTL.to({}, { duration: 1.5 }); // Increased hold for better interaction time
-
-// PHASE 3: LATERAL SCROLL
-// This only begins after the previous phases are complete
 horizontalTL.to(".horizontal-wrapper", {
     x: () => -(document.querySelector(".horizontal-wrapper").scrollWidth - window.innerWidth),
     ease: "none",
-    duration: 5
+});
+
+// Parallax suave nas imagens dos projetos durante o scroll
+gsap.utils.toArray(".project-image-side img").forEach(img => {
+    gsap.to(img, {
+        x: -40,
+        ease: "none",
+        scrollTrigger: {
+            trigger: img,
+            containerAnimation: horizontalTL,
+            start: "left right",
+            end: "right left",
+            scrub: true
+        }
+    });
 });
 
 // --- PROGRESS BAR SYNC ---
@@ -350,7 +312,7 @@ if (progressBar && progressBarContainer) {
         scrollTrigger: {
             trigger: ".horizontal-section",
             start: "top top",
-            end: () => "+=" + (window.innerWidth * 3), // Sync with horizontalTL
+            end: () => "+=" + (document.querySelector(".horizontal-wrapper").scrollWidth), // Sync with horizontalTL
             scrub: 1,
             onEnter: () => gsap.to(progressBarContainer, { opacity: 1, duration: 0.3 }),
             onLeave: () => gsap.to(progressBarContainer, { opacity: 0, duration: 0.3 }),
