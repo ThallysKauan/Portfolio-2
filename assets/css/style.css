@@ -149,10 +149,16 @@ body::after {
 
 /* --- Project Opening: Dominix (Reference-based Depth Look) --- */
 /* --- Project Opening Refactored: Split-Layout Card --- */
+.horizontal-section {
+  position: relative;
+  z-index: 20;
+  /* Keep projects above the hidden header during scroll */
+}
+
 .project-panel {
   position: relative;
   overflow: hidden;
-  background: #000 !important;
+  background: transparent !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,19 +169,20 @@ body::after {
   max-width: 1200px;
   height: 70vh;
   display: flex;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(196, 181, 149, 0.2);
-  border-radius: 12px;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
 }
+
+/* Hover effect removed per user request */
 
 .project-image-side {
   flex: 1.2;
   position: relative;
   overflow: hidden;
-  background: #111;
+  background: #0a0a0a;
 }
 
 .project-image-side img {
@@ -192,7 +199,7 @@ body::after {
 .image-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 .project-info-side {
@@ -202,13 +209,14 @@ body::after {
   flex-direction: column;
   justify-content: center;
   gap: 2rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.01) 0%, transparent 100%);
 }
 
 .project-category {
   font-family: 'Helvetica', sans-serif;
   font-size: 0.7rem;
   color: #c4b595;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 4px;
   display: block;
@@ -220,7 +228,7 @@ body::after {
   font-size: 5rem;
   line-height: 0.9;
   text-transform: uppercase;
-  color: #fff;
+  color: #ffffff;
   letter-spacing: -2px;
 }
 
@@ -241,10 +249,10 @@ body::after {
 .project-tags span {
   font-family: 'Helvetica', sans-serif;
   font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-bottom: 1px solid rgba(196, 181, 149, 0.3);
+  border-bottom: 1px solid rgba(196, 181, 149, 0.5);
   padding-bottom: 2px;
 }
 
@@ -294,12 +302,15 @@ body::after {
     height: auto;
     width: 85vw;
   }
+
   .project-image-side {
     height: 40vh;
   }
+
   .project-info-side {
     padding: 2.5rem;
   }
+
   .project-title {
     font-size: 3rem;
   }
@@ -338,24 +349,49 @@ body::after {
   position: relative;
   text-align: center;
   perspective: 2400px;
+  z-index: 5;
+}
 
-  /* 3D Perspective */
+.title-container {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.portfolio-label {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5em;
+  color: #c4b595;
+  opacity: 0.8;
+  text-transform: uppercase;
+  margin-bottom: -1rem;
 }
 
 .outline-title {
   font-family: 'Impact', 'Arial Black', sans-serif;
   font-size: 11vw;
   line-height: 0.8;
-  color: rgb(245, 245, 247);
+  color: #fff;
   text-transform: uppercase;
-  z-index: 4;
   margin: 0;
-  letter-spacing: normal;
+  letter-spacing: -0.02em;
   position: relative;
-  text-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   pointer-events: none;
   transform-style: preserve-3d;
   will-change: transform, opacity;
+
+  /* Modern Stroke Effect */
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, #fff 0%, #c4b595 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Radiant Tech Cluster Styles (Brillante y Diferente) */
@@ -371,9 +407,14 @@ body::after {
   font-size: 3.5rem;
   transition: transform 0.2s ease-out;
   /* Smooth JS-driven transform */
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+  filter: drop-shadow(0 0 20px var(--glow-color, rgba(255, 255, 255, 0.2)));
   animation: neon-pulse 4s infinite ease-in-out;
   pointer-events: auto;
+  border-radius: 50%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Depth variations via CSS (Static base) */
@@ -528,54 +569,53 @@ body::after {
   }
 }
 
-/* Background Radiant Glow */
+/* Background Radiant Glow - Simplified for elegance */
 .radiant-glow-bg {
   position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(196, 181, 149, 0.1) 0%, transparent 70%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(196, 181, 149, 0.15) 0%, transparent 70%);
   filter: blur(80px);
   z-index: 0;
-  animation: glow-breathe 8s infinite alternate;
+  pointer-events: none;
 }
 
 @keyframes glow-breathe {
   from {
-    transform: scale(0.8);
-    opacity: 0.3;
+    opacity: 0.4;
+    transform: scale(0.9) rotate(0deg);
   }
 
   to {
-    transform: scale(1.2);
-    opacity: 0.6;
+    opacity: 0.7;
+    transform: scale(1.1) rotate(5deg);
   }
 }
 
-/* Shiny Flare Effect */
+/* Shiny Flare Effect - More subtle and following the light */
 .shiny-flare {
   position: absolute;
-  width: 200%;
-  height: 100px;
+  width: 150%;
+  height: 150px;
   background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent);
-  transform: rotate(-45deg);
-  animation: flare-sweep 6s infinite;
+      transparent 20%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 80%);
+  transform: rotate(-35deg);
+  animation: flare-sweep 8s infinite cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
   z-index: 3;
 }
 
 @keyframes flare-sweep {
   0% {
-    left: -100%;
-    top: -100%;
+    transform: translate(-100%, -100%) rotate(-35deg);
   }
 
-  20%,
+  30%,
   100% {
-    left: 100%;
-    top: 100%;
+    transform: translate(100%, 100%) rotate(-35deg);
   }
 }
 
@@ -664,39 +704,55 @@ body::after {
   top: 0;
   left: 0;
   width: 100%;
-  height: 120vh; /* Mesma altura do paper-bg */
+  height: 120vh;
+  /* Mesma altura do paper-bg */
   pointer-events: none;
   z-index: 2000;
 }
 
 .hud-item {
   position: absolute;
-  color: #000; /* Cor preta conforme pedido */
+  color: #000;
+  /* Cor preta conforme pedido */
   font-family: 'Helvetica', sans-serif;
   font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  opacity: 0.6; /* Sutil mas visível */
+  opacity: 0.6;
+  /* Sutil mas visível */
 }
 
 .tech-tag {
-  border: 1px solid rgba(0, 0, 0, 0.2); /* Borda preta sutil */
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* Borda preta sutil */
   padding: 5px 10px;
   border-radius: 2px;
 }
 
 /* Espalhados ao redor do centro */
-.tag-1 { top: 40%; left: 20%; }
-.tag-2 { top: 35%; right: 20%; }
-.tag-3 { top: 55%; left: 25%; }
+.tag-1 {
+  top: 40%;
+  left: 20%;
+}
+
+.tag-2 {
+  top: 35%;
+  right: 20%;
+}
+
+.tag-3 {
+  top: 55%;
+  left: 25%;
+}
 
 /* Coordenadas centralizadas embaixo da esfera */
-.coords { 
-  top: 62%; /* Pouco abaixo do centro onde está a esfera */
-  left: 50%; 
+.coords {
+  top: 62%;
+  /* Pouco abaixo do centro onde está a esfera */
+  left: 50%;
   transform: translateX(-50%);
-  font-family: monospace; 
+  font-family: monospace;
   font-size: 0.75rem;
   color: #000;
 }
@@ -735,7 +791,7 @@ body::after {
   transform: scale(1.7, 0.8);
 }
 
-.text-right {}
+
 
 .navbar {
   position: fixed;
@@ -744,7 +800,8 @@ body::after {
   width: 100%;
   padding: 2.5rem 3rem;
   display: grid;
-  grid-template-columns: 1fr auto 1fr; /* 3 Colunas: Esquerda, Centro, Direita */
+  grid-template-columns: 1fr auto 1fr;
+  /* 3 Colunas: Esquerda, Centro, Direita */
   align-items: center;
   z-index: 1000;
   mix-blend-mode: difference;
@@ -768,13 +825,16 @@ body::after {
 .nav-socials {
   display: flex;
   gap: 1.5rem;
-  justify-content: flex-end; /* Ícones na extrema direita */
+  justify-content: flex-end;
+  /* Ícones na extrema direita */
   align-items: center;
 }
 
 .nav-socials a {
-  font-size: 1.4rem; /* Aumentado para mais destaque */
-  opacity: 1; /* Opacidade total para não parecer "apagado" */
+  font-size: 1.4rem;
+  /* Aumentado para mais destaque */
+  opacity: 1;
+  /* Opacidade total para não parecer "apagado" */
   transition: transform 0.3s ease, opacity 0.3s ease;
   display: flex;
   align-items: center;
