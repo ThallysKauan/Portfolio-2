@@ -148,49 +148,6 @@ gsap.timeline({
         0.6
     );
 
-// --- TECH CLUSTER PARALLAX DEPTH ---
-const projectsSection = document.querySelector('#projetos');
-const nodesList = document.querySelectorAll('.tech-node');
-
-if (projectsSection) {
-    let isPinned = false;
-
-    // Create a helper ScrollTrigger to detect when pinning is active
-    ScrollTrigger.create({
-        trigger: "#projetos",
-        start: "top top",
-        end: "+=2000",
-        onToggle: self => isPinned = self.isActive
-    });
-
-    projectsSection.addEventListener('mousemove', (e) => {
-        if (isPinned) return; // Disable parallax during pinning to boost performance
-
-        const { clientX, clientY } = e;
-        const { left, top, width, height } = projectsSection.getBoundingClientRect();
-
-        const x = (clientX - left) / width - 0.5;
-        const y = (clientY - top) / height - 0.5;
-
-        nodesList.forEach(node => {
-            const depth = parseFloat(node.getAttribute('data-depth')) || 1;
-            gsap.to(node, {
-                x: x * 30 * depth,
-                y: y * 30 * depth,
-                rotateZ: x * 5 * depth,
-                duration: 1,
-                ease: "power2.out",
-                overwrite: "auto"
-            });
-        });
-    });
-
-    projectsSection.addEventListener('mouseleave', () => {
-        nodesList.forEach(node => {
-            gsap.to(node, { x: 0, y: 0, rotateZ: 0, duration: 1.2, ease: "power2.out" });
-        });
-    });
-}
 
 // --- SECURE EXIT TRANSITION (Restore Light Theme) ---
 // Transition from BLACK state (rgba(0,0,0,1)) to LIGHT state (rgb(245,245,247)) 
@@ -217,49 +174,6 @@ if (projectsSection) {
 
 // Removida transição de volta para o escuro
 
-// --- CAMERA CRASH ZOOM EFFECT ---
-const title = document.querySelector(".outline-title");
-
-// Managed by GSAP for stability
-gsap.set(title, {
-    scaleX: 1.7,
-    scaleY: 0.8,
-    z: 0,
-    opacity: 1
-});
-
-const crashTL = gsap.timeline({
-    scrollTrigger: {
-        trigger: "#projetos",
-        start: "top top",
-        end: "+=400",
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1
-    }
-});
-
-crashTL
-    .to(title, {
-        scale: 20,
-        x: 600,
-        z: 1500,
-        opacity: 1,
-        ease: "power1.in"
-    }, 0)
-    .to(nodesList, {
-        scale: 3,
-        z: 1000,
-        x: (i) => (i % 2 === 0 ? -800 : 800),
-        opacity: 0,
-        stagger: 0.02,
-        ease: "power1.in"
-    }, 0)
-    .to(".radiant-glow-bg", {
-        scale: 2,
-        opacity: 0,
-        ease: "power1.in"
-    }, 0);
 
 
 // --- BODY COLOR TRANSITION FOR PROJECTS ---
