@@ -7,7 +7,9 @@
 
   <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- CSS externo -->
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;900&family=Syne:wght@800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/fonts.css" />
   <!-- Devicon for tech icons -->
@@ -35,7 +37,7 @@
     </div>
   </nav>
 
-  <h1 class="bottom-headline">THALLYS KAUAN</h1>
+  <h1 class="bottom-headline" style="z-index: -1;">THALLYS KAUAN</h1>
   <div class="progress-bar-container">
     <div class="progress-bar-fill"></div>
   </div>
@@ -135,35 +137,358 @@
       </section>
 
       <section id="projetos">
-        <div class="principal_head">
-          <div class="radiant-glow-bg"></div>
-
-          <div class="tech-cluster">
-            <i class="devicon-html5-plain colored tech-node node-1" data-depth="2"></i>
-            <i class="devicon-sass-original colored tech-node node-2" data-depth="1.5"></i>
-            <i class="devicon-javascript-plain colored tech-node node-3" data-depth="3"></i>
-            <i class="devicon-react-original colored tech-node node-4" data-depth="2.5"></i>
-            <i class="devicon-nextjs-original colored tech-node node-5" data-depth="1.2"></i>
-            <i class="devicon-php-plain colored tech-node node-6" data-depth="2.8"></i>
-            <i class="devicon-threejs-original tech-node node-7" style="color: #fff;" data-depth="1.8"></i>
-            <i class="devicon-gsap-plain tech-node node-8" style="color: #88ce02;" data-depth="2.2"></i>
-            <i class="devicon-python-plain colored tech-node node-15" data-depth="3.2"></i>
-            <i class="devicon-postman-plain colored tech-node node-16" data-depth="1.4"></i>
-            <i class="devicon-bootstrap-plain colored tech-node node-11" data-depth="2.6"></i>
-            <i class="devicon-mysql-plain colored tech-node node-10" data-depth="1.9"></i>
-            <i class="devicon-git-plain colored tech-node node-12" data-depth="3.5"></i>
-            <i class="devicon-figma-plain colored tech-node node-13" data-depth="1.1"></i>
+        <div class="projetos-header">
+          <canvas id="projects-canvas"></canvas>
+          <div class="projetos-title-container">
+            <span class="projetos-subtitle">Explore meu universo de</span>
+            <h2 class="projetos-title" data-text="PROJETOS">PROJETOS</h2>
           </div>
-
-          <h2 class="outline-title">PROJETOS</h2>
-
-          <div class="shiny-flare"></div>
         </div>
 
+        <style>
+          /* Make the browser scrollbar transparent but visible */
+          ::-webkit-scrollbar {
+            width: 10px;
+            background: transparent;
+          }
+
+          ::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          ::-webkit-scrollbar-thumb {
+            background-color: rgba(196, 181, 149, 0.4);
+            border-radius: 10px;
+          }
+
+          ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(196, 181, 149, 0.8);
+          }
+
+          #projetos {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: transparent;
+            /* Seamless blend with body */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .projetos-header {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+          }
+
+          #projects-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            mix-blend-mode: screen;
+            /* Soft blur mask fading nicely */
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+            pointer-events: none;
+          }
+
+          .projetos-title-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .projetos-subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            /* Starts slightly open for GSAP */
+            color: #c4b595;
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            opacity: 0;
+            /* Starts hidden */
+            transform: translateY(50px);
+          }
+
+          .projetos-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14vw;
+            font-weight: 900;
+            line-height: normal;
+            margin: 0;
+            /* Solid filled premium metallic look */
+            background: linear-gradient(to bottom, #ffffff 30%, #c4b595 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: -6px;
+            opacity: 0;
+            /* Starts hidden */
+            transform: translateY(100px) scale(0.9);
+            /* Subtle glow for maximum clarity against stars */
+            filter: drop-shadow(0 0 15px rgba(196, 181, 149, 0.3));
+          }
+
+          .projetos-title::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            color: #c4b595;
+            -webkit-text-stroke: 0;
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: -1;
+          }
+
+          .light-portal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(245, 245, 247);
+            z-index: 10;
+            clip-path: ellipse(150% 0% at 50% 100%);
+            overflow: hidden;
+            /* Clips the internal 3D canvas properly */
+          }
+
+          #portal-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+          }
+
+          .portal-scroll-text {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translate(-50%, 20px);
+            color: #050505;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.5em;
+            font-weight: 500;
+            opacity: 0;
+          }
+
+          @media(max-width: 768px) {
+            .projetos-subtitle {
+              font-size: 0.7rem;
+            }
+          }
+        </style>
+
+        <div class="light-portal">
+          <canvas id="portal-canvas"></canvas>
+          <div class="portal-scroll-text">CONTINUE ROLANDO</div>
+        </div>
+
+        <script type="module">
+          import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+
+          // --- GALAXY SCENE ---
+          const canvas = document.getElementById('projects-canvas');
+          const scene = new THREE.Scene();
+
+          scene.fog = new THREE.FogExp2(0x050505, 0.001);
+
+          const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+          camera.position.z = 800;
+
+          const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+          const particlesGeometry = new THREE.BufferGeometry();
+          const particlesCount = 4000;
+          const posArray = new Float32Array(particlesCount * 3);
+          const colorsArray = new Float32Array(particlesCount * 3);
+
+          const color1 = new THREE.Color('#ffffff');
+          const color2 = new THREE.Color('#c4b595');
+
+          for (let i = 0; i < particlesCount * 3; i += 3) {
+            const radius = Math.random() * 2000;
+            const theta = Math.random() * Math.PI * 2;
+            const y = (Math.random() - 0.5) * 1000;
+
+            posArray[i] = Math.cos(theta) * radius;
+            posArray[i + 1] = y;
+            posArray[i + 2] = Math.sin(theta) * radius;
+
+            const mixedColor = color1.clone().lerp(color2, Math.random());
+            colorsArray[i] = mixedColor.r;
+            colorsArray[i + 1] = mixedColor.g;
+            colorsArray[i + 2] = mixedColor.b;
+          }
+
+          particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+          particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+
+          const particlesMaterial = new THREE.PointsMaterial({
+            size: 4,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0, // Starts completely transparent
+            blending: THREE.AdditiveBlending
+          });
+
+          const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+          scene.add(particlesMesh);
+
+          // --- PORTAL 3D SCENE (Elevated Inverted Universe) ---
+          const portalCanvas = document.getElementById('portal-canvas');
+          const portalScene = new THREE.Scene();
+          const portalCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+          portalCamera.position.set(0, 0, 25);
+
+          const portalRenderer = new THREE.WebGLRenderer({ canvas: portalCanvas, alpha: true, antialias: true });
+          portalRenderer.setSize(window.innerWidth, window.innerHeight);
+          portalRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+          // 1. Inverted Galaxy (Black Particles for white background)
+          const portalPartGeom = new THREE.BufferGeometry();
+          const pCount = 1500;
+          const pPos = new Float32Array(pCount * 3);
+          for (let i = 0; i < pCount * 3; i++) { pPos[i] = (Math.random() - 0.5) * 80; }
+          portalPartGeom.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+
+          const portalPartMat = new THREE.PointsMaterial({
+            color: 0x111111,
+            size: 0.15,
+            transparent: true,
+            opacity: 0
+          });
+          const portalParticles = new THREE.Points(portalPartGeom, portalPartMat);
+          portalScene.add(portalParticles);
+
+          // 2. The Core Diamond (Higher and shinier)
+          const diamondGeom = new THREE.OctahedronGeometry(3.5);
+          const diamondMat = new THREE.MeshBasicMaterial({
+            color: 0x0a0a0a,
+            wireframe: true,
+            transparent: true,
+            opacity: 0
+          });
+          const diamondObj = new THREE.Mesh(diamondGeom, diamondMat);
+          diamondObj.position.y = 8; // HIGHER
+          portalScene.add(diamondObj);
+
+
+          let mouseX = 0;
+          let mouseY = 0;
+
+          document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - window.innerWidth / 2) * 0.5;
+            mouseY = (event.clientY - window.innerHeight / 2) * 0.5;
+          });
+
+          window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            portalCamera.aspect = window.innerWidth / window.innerHeight;
+            portalCamera.updateProjectionMatrix();
+            portalRenderer.setSize(window.innerWidth, window.innerHeight);
+          });
+
+          const clock = new THREE.Clock();
+
+          function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+
+            // Galaxy 1 (Dark)
+            particlesMesh.rotation.y = elapsedTime * 0.05;
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+
+            // Portal Scene (White)
+            diamondObj.rotation.y = elapsedTime * 0.8;
+            diamondObj.rotation.x = Math.sin(elapsedTime) * 0.4;
+
+            portalParticles.rotation.y = elapsedTime * 0.1;
+            portalParticles.rotation.z = Math.sin(elapsedTime * 0.5) * 0.2;
+
+            portalRenderer.render(portalScene, portalCamera);
+          }
+
+          animate();
+
+          // Initialize GSAP scroll animations for the glorious portal
+          window.addEventListener('load', () => {
+            if (typeof gsap !== 'undefined') {
+
+              const masterTL = gsap.timeline({
+                scrollTrigger: {
+                  trigger: "#projetos",
+                  start: "top top",
+                  end: "+=1800",
+                  pin: true,
+                  scrub: 1,
+                  anticipatePin: 1
+                }
+              });
+
+              masterTL.to(particlesMaterial, { opacity: 0.8, duration: 1 })
+                .to(".projetos-title", { scale: 1, opacity: 1, y: 0, duration: 1 }, "<")
+                .to(".projetos-subtitle", { opacity: 0.9, letterSpacing: "0.8em", y: 0, duration: 1 }, "<")
+
+                .to({}, { duration: 0.5 })
+
+                // 2. Dome sweeps up
+                .to(".light-portal", {
+                  clipPath: "ellipse(150% 150% at 50% 100%)",
+                  duration: 2,
+                  ease: "power2.inOut"
+                })
+
+                // 3. THE TCHAN: Swirling Vortex & Diamond Arrival
+                .to(portalPartMat, { opacity: 0.4, duration: 1.5 }, "-=1.5")
+                .to(diamondMat, { opacity: 1, duration: 1 }, "-=1.2")
+                .from(diamondObj.position, { y: 20, duration: 2, ease: "back.out(1.7)" }, "-=1.5")
+                .to(".portal-scroll-text", { opacity: 1, y: 0, duration: 1 }, "-=1")
+
+                // 4. Final Push (Diamond explodes outward)
+                .to(portalCamera.position, { z: 5, duration: 2, ease: "power2.in" })
+                .to(diamondObj.scale, { x: 5, y: 5, z: 5, duration: 2, ease: "power2.in" }, "<")
+                .to([diamondMat, portalPartMat, ".portal-scroll-text"], { opacity: 0, duration: 0.5 });
+            }
+          });
+        </script>
 
       </section>
 
-      <section class="horizontal-section">
+
+      <section class="horizontal-section"
+        style="background-color: rgb(245, 245, 247); margin-top: -2px; position: relative; z-index: 10;">
         <div class="horizontal-wrapper">
           <!-- Projeto 1: Dominix -->
           <div class="panel project-panel">
@@ -178,7 +503,8 @@
                   <h2 class="project-title">Dominix</h2>
                 </div>
                 <p class="project-description">
-                  Uma plataforma de análise de dados em tempo real com interface futurista e focada em UX de alta performance.
+                  Uma plataforma de análise de dados em tempo real com interface futurista e focada em UX de alta
+                  performance.
                 </p>
                 <div class="project-tags">
                   <span>React</span>
