@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Three.js Scroll Sphere</title>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;900&family=Syne:wght@800&family=Inter:wght@400;600;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/fonts.css" />
+  <!-- Devicon for tech icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollSmoother.min.js" defer></script>
+  <!-- JS principal -->
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/hero-animation.js" defer></script>
+</head>
+
+<body>
+  <div id="particles-container"></div>
+  <div class="corner-text bottom-right">© 2026 PORTFÓLIO</div>
+
+  <nav class="navbar">
+    <div class="nav-brand">DESENVOLVEDOR FULL-STACK</div>
+    <div class="nav-links">
+      <a href="#sobre">sobre mim</a>
+      <a href="#projetos">projetos</a>
+      <a href="#futuro">aonde quero chegar</a>
+    </div>
+    <div class="nav-socials">
+      <a href="https://instagram.com/seuuser" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://github.com/seuuser" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/seuuser" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+  </nav>
+
+  <h1 class="bottom-headline" style="z-index: -1;">THALLYS KAUAN</h1>
+  <div class="hero-tagline-container">
+    <span class="hero-tagline">TRANSFORMANDO IDEIAS EM CÓDIGO DESDE 2021</span>
+  </div>
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill"></div>
+  </div>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+
+      <section class="scene1">
+        <div class="paper-bg">
+          <!-- Floating HUD Elements (Static on page) -->
+          <div class="hud-container">
+            <div class="hud-item tech-tag tag-1">RE-PENSAR</div>
+            <div class="hud-item tech-tag tag-2">CONSTRUIR</div>
+            <div class="hud-item tech-tag tag-3">OTIMIZAR</div>
+            <div class="hud-item coords">X: <span id="coord-x">0.00</span> Y: <span id="coord-y">0.00</span></div>
+          </div>
+        </div>
+
+        <div class="part2">
+          <div class="div1">
+            <h2 class="text-right">SOBRE</h2>
+            <h2 class="text-left"> MIM</h2>
+
+
+
+          </div>
+
+          <div class="content hero-content">
+            <div class="content_left">
+              <span class="section-number">01</span>
+              <h3 class="tagline">CRIATIVIDADE <br> & CÓDIGO</h3>
+              <p class="current-role">
+                Desenvolvedor Full-stack na <strong>Yaslip</strong>
+                <span class="role-date">Desde Junho de 2025</span>
+              </p>
+              <div class="content_left">
+                <h2 class="section-title">O QUE <br> EU FAÇO</h2>
+                <div class="detailed-bio">
+                  <p>
+                    Atuo como desenvolvedor com experiência em projetos de Front-End e Back-End, participando da criação
+                    e otimização de sites e aplicações web personalizadas. Trabalho com tecnologias como JavaScript,
+                    React, Next.js, PHP, HTML5, CSS3, SCSS, TailwindCSS e Bootstrap, sempre buscando soluções alinhadas
+                    às necessidades do negócio e dos usuários.
+                  </p>
+                  <p>
+                    Tenho forte foco em performance, SEO e qualidade de código, aplicando boas práticas que melhoram
+                    indicadores como Core Web Vitals, experiência do usuário e posicionamento nos motores de busca.
+                    Também realizo integrações com APIs, além do uso de ferramentas como Google Analytics e Search
+                    Console para análise e melhoria contínua dos projetos.
+                  </p>
+                  <p>
+                    Além disso, já desenvolvi sistemas internos de automação utilizando PHP e criei dashboards
+                    personalizados para monitoramento de desempenho completo dos sites.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="details-content">
+
+
+              <div class="content_right">
+                <h2 class="section-title text-right-title">TECNOLOGIAS <br> & SKILLS</h2>
+
+
+
+                <div class="skills-container">
+                  <span class="skill-item">Javascript</span>
+                  <span class="skill-item">React</span>
+                  <span class="skill-item">Next.js</span>
+                  <span class="skill-item">PHP</span>
+                  <span class="skill-item">SQL</span>
+                  <span class="skill-item">HTML5</span>
+                  <span class="skill-item">CSS3/SCSS</span>
+                  <span class="skill-item">TailwindCSS</span>
+                  <span class="skill-item">GSAP</span>
+                  <span class="skill-item">Three.js</span>
+                </div>
+                <div class="detailed-bio text-right-bio">
+                  <h3 class="subsection-title">EXPERTISE TÉCNICA</h3>
+                  <p>
+                    Minha stack é centrada no ecossistema JavaScript, utilizando React e Next.js para criar interfaces
+                    reativas e escaláveis. No back-end, utilizo PHP e SQL para sistemas robustos.
+                  </p>
+                  <p>
+                    Para experiências imersivas, domino GSAP e Three.js, trazendo interatividade e movimento de alta
+                    performance para a web.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </section>
+
+      <section id="projetos">
+        <div class="projetos-header">
+          <canvas id="projects-canvas"></canvas>
+          <div class="projetos-title-container">
+            <span class="projetos-subtitle">Explore meu universo de</span>
+            <h2 class="projetos-title" data-text="PROJETOS">PROJETOS</h2>
+          </div>
+        </div>
+
+        <style>
+          /* Make the browser scrollbar transparent but visible */
+          ::-webkit-scrollbar {
+            width: 10px;
+            background: transparent;
+          }
+
+          ::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          ::-webkit-scrollbar-thumb {
+            background-color: rgba(196, 181, 149, 0.4);
+            border-radius: 10px;
+          }
+
+          ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(196, 181, 149, 0.8);
+          }
+
+          #projetos {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: transparent;
+            /* Seamless blend with body */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .projetos-header {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+          }
+
+          #projects-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            mix-blend-mode: screen;
+            /* Soft blur mask fading nicely */
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+            pointer-events: none;
+          }
+
+          .projetos-title-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .projetos-subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            /* Starts slightly open for GSAP */
+            color: #c4b595;
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            opacity: 0;
+            /* Starts hidden */
+            transform: translateY(50px);
+          }
+
+          .projetos-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 14vw;
+            font-weight: 900;
+            line-height: normal;
+            margin: 0;
+            /* Solid filled premium metallic look */
+            background: linear-gradient(to bottom, #ffffff 30%, #c4b595 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: -6px;
+            opacity: 0;
+            /* Starts hidden */
+            transform: translateY(100px) scale(0.9);
+            /* Subtle glow for maximum clarity against stars */
+            filter: drop-shadow(0 0 15px rgba(196, 181, 149, 0.3));
+          }
+
+          .projetos-title::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            color: #c4b595;
+            -webkit-text-stroke: 0;
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: -1;
+          }
+
+          .light-portal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(245, 245, 247);
+            z-index: 10;
+            clip-path: ellipse(150% 0% at 50% 100%);
+            overflow: hidden;
+            /* Clips the internal 3D canvas properly */
+          }
+
+          #portal-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+          }
+
+          .portal-scroll-text {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translate(-50%, 20px);
+            color: #050505;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.5em;
+            font-weight: 500;
+            opacity: 0;
+          }
+
+          @media(max-width: 768px) {
+            .projetos-subtitle {
+              font-size: 0.7rem;
+            }
+          }
+        </style>
+
+        <div class="light-portal">
+          <canvas id="portal-canvas"></canvas>
+          <div class="portal-scroll-text">CONTINUE ROLANDO</div>
+        </div>
+
+        <script type="module">
+          import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+
+          // --- GALAXY SCENE ---
+          const canvas = document.getElementById('projects-canvas');
+          const scene = new THREE.Scene();
+
+          scene.fog = new THREE.FogExp2(0x050505, 0.001);
+
+          const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+          camera.position.z = 800;
+
+          const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+          const particlesGeometry = new THREE.BufferGeometry();
+          const particlesCount = 4000;
+          const posArray = new Float32Array(particlesCount * 3);
+          const colorsArray = new Float32Array(particlesCount * 3);
+
+          const color1 = new THREE.Color('#ffffff');
+          const color2 = new THREE.Color('#c4b595');
+
+          for (let i = 0; i < particlesCount * 3; i += 3) {
+            const radius = Math.random() * 2000;
+            const theta = Math.random() * Math.PI * 2;
+            const y = (Math.random() - 0.5) * 1000;
+
+            posArray[i] = Math.cos(theta) * radius;
+            posArray[i + 1] = y;
+            posArray[i + 2] = Math.sin(theta) * radius;
+
+            const mixedColor = color1.clone().lerp(color2, Math.random());
+            colorsArray[i] = mixedColor.r;
+            colorsArray[i + 1] = mixedColor.g;
+            colorsArray[i + 2] = mixedColor.b;
+          }
+
+          particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+          particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+
+          const particlesMaterial = new THREE.PointsMaterial({
+            size: 4,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0, // Starts completely transparent
+            blending: THREE.AdditiveBlending
+          });
+
+          const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+          scene.add(particlesMesh);
+
+          // --- PORTAL 3D SCENE (Elevated Inverted Universe) ---
+          const portalCanvas = document.getElementById('portal-canvas');
+          const portalScene = new THREE.Scene();
+          const portalCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+          portalCamera.position.set(0, 0, 25);
+
+          const portalRenderer = new THREE.WebGLRenderer({ canvas: portalCanvas, alpha: true, antialias: true });
+          portalRenderer.setSize(window.innerWidth, window.innerHeight);
+          portalRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+          // 1. Inverted Galaxy (Black Particles for white background)
+          const portalPartGeom = new THREE.BufferGeometry();
+          const pCount = 1500;
+          const pPos = new Float32Array(pCount * 3);
+          for (let i = 0; i < pCount * 3; i++) { pPos[i] = (Math.random() - 0.5) * 80; }
+          portalPartGeom.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+
+          const portalPartMat = new THREE.PointsMaterial({
+            color: 0x111111,
+            size: 0.15,
+            transparent: true,
+            opacity: 0
+          });
+          const portalParticles = new THREE.Points(portalPartGeom, portalPartMat);
+          portalScene.add(portalParticles);
+
+          // 2. The Core Diamond (Higher and shinier)
+          const diamondGeom = new THREE.OctahedronGeometry(3.5);
+          const diamondMat = new THREE.MeshBasicMaterial({
+            color: 0x0a0a0a,
+            wireframe: true,
+            transparent: true,
+            opacity: 0
+          });
+          const diamondObj = new THREE.Mesh(diamondGeom, diamondMat);
+          diamondObj.position.y = 8; // HIGHER
+          portalScene.add(diamondObj);
+
+
+          let mouseX = 0;
+          let mouseY = 0;
+
+          document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - window.innerWidth / 2) * 0.5;
+            mouseY = (event.clientY - window.innerHeight / 2) * 0.5;
+          });
+
+          window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            portalCamera.aspect = window.innerWidth / window.innerHeight;
+            portalCamera.updateProjectionMatrix();
+            portalRenderer.setSize(window.innerWidth, window.innerHeight);
+          });
+
+          const clock = new THREE.Clock();
+
+          function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+
+            // Galaxy 1 (Dark)
+            particlesMesh.rotation.y = elapsedTime * 0.05;
+            camera.position.x += (mouseX - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+
+            // Portal Scene (White)
+            diamondObj.rotation.y = elapsedTime * 0.8;
+            diamondObj.rotation.x = Math.sin(elapsedTime) * 0.4;
+
+            portalParticles.rotation.y = elapsedTime * 0.1;
+            portalParticles.rotation.z = Math.sin(elapsedTime * 0.5) * 0.2;
+
+            portalRenderer.render(portalScene, portalCamera);
+          }
+
+          animate();
+
+          // Initialize GSAP scroll animations for the glorious portal
+          window.addEventListener('load', () => {
+            if (typeof gsap !== 'undefined') {
+
+              const masterTL = gsap.timeline({
+                scrollTrigger: {
+                  trigger: "#projetos",
+                  start: "top top",
+                  end: "+=1000",
+                  pin: true,
+                  scrub: 1,
+                  anticipatePin: 1
+                }
+              });
+
+              masterTL.to(particlesMaterial, { opacity: 0.8, duration: 1 })
+                .to(".projetos-title", { scale: 1, opacity: 1, y: 0, duration: 1 }, "<")
+                .to(".projetos-subtitle", { opacity: 0.9, letterSpacing: "0.8em", y: 0, duration: 1 }, "<")
+
+                .to({}, { duration: 0.5 })
+
+                // 2. Dome sweeps up
+                .to(".light-portal", {
+                  clipPath: "ellipse(150% 150% at 50% 100%)",
+                  duration: 2,
+                  ease: "power2.inOut"
+                })
+
+                // 3. THE TCHAN: Swirling Vortex & Diamond Arrival
+                .to(portalPartMat, { opacity: 0.4, duration: 1.5 }, "-=1.5")
+                .to(diamondMat, { opacity: 1, duration: 1 }, "-=1.2")
+                .from(diamondObj.position, { y: 20, duration: 2, ease: "back.out(1.7)" }, "-=1.5")
+                .to(".portal-scroll-text", { opacity: 1, y: 0, duration: 1 }, "-=1")
+
+                // 4. Final Push (Diamond explodes outward)
+                .to(portalCamera.position, { z: 5, duration: 2, ease: "power2.in" })
+                .to(diamondObj.scale, { x: 5, y: 5, z: 5, duration: 2, ease: "power2.in" }, "<")
+                .to([diamondMat, portalPartMat, ".portal-scroll-text"], { opacity: 0, duration: 0.5 });
+            }
+          });
+        </script>
+
+      </section>
+
+
+      <section class="horizontal-section"
+        style="background-color: rgb(245, 245, 247); margin-top: -2px; position: relative; z-index: 10;">
+        <div class="horizontal-wrapper">
+          <!-- Projeto 1: Dominix -->
+          <div class="panel project-panel">
+            <div class="project-card">
+              <div class="project-image-side">
+                <img src="assets/img/projects/dominix.png" alt="Dominix Dashboard">
+                <div class="image-overlay"></div>
+              </div>
+              <div class="project-info-side">
+                <div class="project-header">
+                  <span class="project-category">SaaS / Dashboard</span>
+                  <h2 class="project-title">Dominix</h2>
+                </div>
+                <p class="project-description">
+                  Uma plataforma de análise de dados em tempo real com interface futurista e focada em UX de alta
+                  performance.
+                </p>
+                <div class="project-tags">
+                  <span>React</span>
+                  <span>GSAP</span>
+                  <span>Next.js</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn primary">VISITAR SITE</a>
+                  <a href="#" class="project-btn secondary"><i class="fa-brands fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projeto 2: Ethereal -->
+          <div class="panel project-panel">
+            <div class="project-card">
+              <div class="project-image-side">
+                <img src="assets/img/projects/ethereal.png" alt="Ethereal Fashion">
+                <div class="image-overlay"></div>
+              </div>
+              <div class="project-info-side">
+                <div class="project-header">
+                  <span class="project-category">E-commerce / Luxo</span>
+                  <h2 class="project-title">Ethereal</h2>
+                </div>
+                <p class="project-description">
+                  Landing page minimalista para uma marca de moda high-end, focada em elegância e tipografia refinada.
+                </p>
+                <div class="project-tags">
+                  <span>Three.js</span>
+                  <span>SCSS</span>
+                  <span>GSAP</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn primary">VISITAR SITE</a>
+                  <a href="#" class="project-btn secondary"><i class="fa-brands fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projeto 3: Vortex -->
+          <div class="panel project-panel">
+            <div class="project-card">
+              <div class="project-image-side">
+                <img src="assets/img/projects/vortex.png" alt="Vortex Crypto">
+                <div class="image-overlay"></div>
+              </div>
+              <div class="project-info-side">
+                <div class="project-header">
+                  <span class="project-category">Crypto / Fintech</span>
+                  <h2 class="project-title">Vortex</h2>
+                </div>
+                <p class="project-description">
+                  Interface de trading de criptomoedas com estética cyberpunk e visualização de dados complexa.
+                </p>
+                <div class="project-tags">
+                  <span>Web3</span>
+                  <span>React</span>
+                  <span>Three.js</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn primary">VISITAR SITE</a>
+                  <a href="#" class="project-btn secondary"><i class="fa-brands fa-github"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="fundador">
+        <div class="fundador-glow"></div>
+        <div class="fundador-container">
+          <div class="fundador-content">
+            <span class="comunidade-label">SOBRE MIM</span>
+            <div class="fundador-bio">
+              <p>Olá! Eu sou o Thallys, um desenvolvedor full-stack com um olhar refinado para o design e paixão por
+                inovação.</p>
+              <p>Transformo conceitos complexos em experiências digitais fluidas e imersivas. Meu objetivo é sempre unir
+                estética premium à mais alta performance técnica, criando projetos que inspiram e impactam.</p>
+              <p>Acredito que cada linha de código é uma oportunidade para criar algo extraordinário. Vamos construir o
+                futuro da web juntos.</p>
+            </div>
+
+            <div class="fundador-social-stats">
+              <a href="https://linkedin.com/in/seuuser" target="_blank" class="stat-item"
+                style="text-decoration: none;">
+                <div class="icon-circle"><i class="fa-brands fa-linkedin-in"></i></div>
+                <div class="stat-text">
+                  <span class="stat-count">Conectar</span>
+                  <span class="stat-handle">LinkedIn</span>
+                </div>
+              </a>
+              <a href="https://wa.me/5500000000000" target="_blank" class="stat-item" style="text-decoration: none;">
+                <div class="icon-circle"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="stat-text">
+                  <span class="stat-count">Conversar</span>
+                  <span class="stat-handle">WhatsApp</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="fundador-image-container">
+            <img src="assets/img/profile/founder.png" alt="Thallys Kauan" class="fundador-photo">
+            <div class="fundador-overlay-wrapper">
+              <h2 class="fundador-overlay-text">DEV</h2>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer id="cta-footer">
+        <canvas id="footer-canvas"></canvas>
+        <div class="cta-inner">
+          <h2 class="cta-title">Vamos fazer algo incrível juntos.</h2>
+
+          <div class="action-hub">
+            <div class="hub-role-tag">THALLYS KAUAN <span class="divider">|</span> ENGENHEIRO FULL-STACK</div>
+            <p class="hub-subtitle">Disponível para transformar ideias complexas em experiências digitais impecáveis.
+            </p>
+
+            <div class="hub-actions">
+              <a href="https://wa.me/5500000000000" target="_blank" class="hub-btn primary">
+                NOVO PROJETO <i class="fa-brands fa-whatsapp"></i>
+              </a>
+              <a href="https://linkedin.com/in/seuuser" target="_blank" class="hub-btn secondary">
+                MANDAR MENSAGEM <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="hub-btn ghost">
+                <span class="hub-dot"></span> CURRÍCULO
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop">
+    <span class="btt-text">VOLTAR AO TOPO</span>
+    <div class="btt-line"></div>
+    <i class="fa-solid fa-arrow-up"></i>
+  </div>
+
+</body>
+
+</html>
